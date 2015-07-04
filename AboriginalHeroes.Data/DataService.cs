@@ -96,7 +96,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup2()
         {
             AboriginalHeroes.Data.DataModels.Naa.RootObject rootobject = await GetNaaData("indigenous");
-            DataGroup group = new DataGroup("2", "Enlisted Personnel", "World War 1 - Group 2", "", "Here is the group description");
+            DataGroup group = new DataGroup("2", "Enlisted Personnel", "Aborigines and Torres Strait Islanders", "Images/enlistedpersonel.jpg", "Aborigines and Torres Strait Islanders have fought for Australia, from the Boer War onwards.");
             foreach (AboriginalHeroes.Data.DataModels.Naa.ResultSet result in rootobject.ResultSet)
             {
                 string id = result.person_id.ToString();
@@ -131,7 +131,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup4()
         {
             DataModels.Daa.RootObject rootobject = await GetLocalFile<DataModels.Daa.RootObject>("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
-            DataGroup group = new DataGroup("4", "Indigenous Profiles", "They Served with Honour", "", "Tales of courage, valour, of finding love, and of continued struggles post-war.");
+            DataGroup group = new DataGroup("4", "Indigenous Profiles", "They Served with Honour", "Images/TheyServedWithHonour.jpg", "Tales of courage, valour, of finding love, and of continued struggles post-war.");
 
             DataModels.Daa.Group dataGroup = rootobject.Groups.First();
             foreach (DataModels.Daa.Item groupItem in dataGroup.Items)
@@ -177,7 +177,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroupVideos()
         {     
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmFilmData();
-            DataGroup group = new DataGroup("3", "Videos", "The film and videos include many collections including oral histories, film commissions", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
+            DataGroup group = new DataGroup("3", "Videos", "The film and videos include many collections including oral histories, film commissions", "Images/VideoPerson.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;

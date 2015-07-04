@@ -57,13 +57,13 @@ namespace AboriginalHeroes.Data
             DataGroup group2 = await dataService.GetDataGroup2();
             DataGroup videos = await dataService.GetDataGroupVideos();
             DataGroup group4 = await dataService.GetDataGroup4();
-            //DataGroup group5 = await dataService.GetDataGroup5(); dataset is broken
 
+            this.Groups.Add(group4);//personel first.
             this.Groups.Add(group1);
             this.Groups.Add(group2);
             Groups.Add(videos);
-            this.Groups.Add(group4);
-            //this.Groups.Add(group5);
+           
+           
         }
 
     }
