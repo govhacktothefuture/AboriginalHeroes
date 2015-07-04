@@ -136,8 +136,13 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\logo_150_150.png" />
+    <Content Include="Assets\logo_50_50_360.png" />
+    <Content Include="logo_310_150.scale-100.png" />
     <None Include="AboriginalHeroes.UI_TemporaryKey.pfx" />
     <None Include="Common\ReadMe.txt" />
+    <Content Include="Assets\logo_310_150.scale-100.png" />
+    <Content Include="Assets\logo_310_310_360.scale-100.png" />
     <Content Include="DataModel\SampleData.json" />
   </ItemGroup>
   <ItemGroup>

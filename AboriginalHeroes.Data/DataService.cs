@@ -29,9 +29,9 @@ namespace AboriginalHeroes.Data
             return content;
         }
 
-        public async Task<AboriginalHeroes.Data.DataModels.Awm.RootObject> GetAwmData(string queryString)
+        public async Task<RootObject> GetAwmData(string queryString)
         {
-            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20", queryString));
+            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20",queryString));
 
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
             return rootObject;
@@ -47,16 +47,16 @@ namespace AboriginalHeroes.Data
 
         public async Task<DataGroup> GetDataGroup1()
         {
-            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData("indigenous");
-            DataGroup group = new DataGroup("1", "Heroes 1", "World War 1 - Group 1", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Here is the group description");
-            foreach (AboriginalHeroes.Data.DataModels.Awm.Result result in rootObject.results.Take(100))
+            RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");//indigenous            
+            DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
+            foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;
-                string title = result.base_rank;
-                string subtitle = result.birth_place;
-                //string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.id);
-                string imagePath = @"http://www.cv.vic.gov.au/existingmedia/10583/AboriginalServicemen1.jpg";
-                string description = result.birth_date;
+                string title = result.title;                    
+                string subtitle = result.base_rank;
+                string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);
+                //string imagePath = @"http://www.cv.vic.gov.au/existingmedia/10583/AboriginalServicemen1.jpg";
+                string description = result.description;
                 string content = "TODO: Create some content based on the result;";
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
                 group.Items.Add(item);
@@ -93,7 +93,7 @@ namespace AboriginalHeroes.Data
         {
             string jsonString = await GetJsonStream(string.Format("https://api.naa.gov.au/naa/api/v1/recorditem/search-series-b2455?keyword={0}&rows=1&page=1&app_id=598e8f24&app_key=bf81bc01f4f7c9b74e20be0ce7527395", name));
             RootObjectBarcode result = JsonConvert.DeserializeObject<RootObjectBarcode>(jsonString);
-         
+
             return (string.Format("http://recordsearch.naa.gov.au/SearchNRetrieve/NAAMedia/ShowImage.aspx?B={0}&S=1&T=P", result.ResultSet.First().barcode));
 
         }

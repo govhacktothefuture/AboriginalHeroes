@@ -19,41 +19,42 @@ namespace AboriginalHeroes.Data.DataModels.Awm
 
     public class Result
     {
-        public string record_type { get; set; }
-        public string type { get; set; }
-        public string id { get; set; }
         public string url { get; set; }
-        public string base_rank { get; set; }
-        public List<string> bio_timeline { get; set; }
-        public string birth_date { get; set; }
-        public string birth_place { get; set; }
-        public List<string> conflict { get; set; }
-        public List<string> related_conflicts { get; set; }
-        public List<string> related_conflict_sort { get; set; }
-        public List<string> conflict_search { get; set; }
-        public List<string> conflict_category { get; set; }
-        public string gender { get; set; }
+        public string accession_number { get; set; }
+        public string id { get; set; }
+        public string description { get; set; }
+        public string type { get; set; }
+        public string title { get; set; }
         public List<string> related_subjects { get; set; }
-        public List<string> name_variation { get; set; }
-        public string preferred_name { get; set; }
-        public List<string> service_conflict { get; set; }
-        public List<string> service_number { get; set; }
-        public List<string> webgroups { get; set; }
-        public string web_profile { get; set; }
-        public List<string> catalogue_id { get; set; }
-        public List<string> related_objects { get; set; }
-        public List<string> related_units_id { get; set; }
+        public List<string> object_type { get; set; }
+        public List<string> maker { get; set; }
+        public List<string> maker_text { get; set; }
+        public List<string> makers_details { get; set; }
         public List<string> related_units { get; set; }
+        public List<string> related_units_id { get; set; }
         public List<string> related_units_label { get; set; }
         public List<string> related_unit_all_ids { get; set; }
-        public List<string> unit { get; set; }
-        public List<string> rank { get; set; }
-        public List<string> related_people_id { get; set; }
+        public List<string> related_units_details { get; set; }
+        public List<string> related_conflicts { get; set; }
+        public List<string> conflict_category { get; set; }
+        public List<string> related_conflict_sort { get; set; }
+        public List<string> conflict_search { get; set; }
+        public List<string> copyright_status { get; set; }
+        public List<string> date_made { get; set; }
+        public List<string> descriptor { get; set; }
+        public List<string> object_type_main { get; set; }
+        public List<string> other_numbers { get; set; }
+        public List<string> related_places { get; set; }
+        public List<string> related_places_id { get; set; }
+        public List<string> related_places_label { get; set; }
         public List<string> related_people { get; set; }
-        public List<string> related_people_label { get; set; }
-        public string death_date { get; set; }
-        public List<string> corps { get; set; }
-        public string death_place { get; set; }
+        public List<string> object_type_sub { get; set; }
+        public List<string> place_made { get; set; }
+        public List<string> secondary_image { get; set; }
+
+        public string base_rank { get; set; }
+        public string birth_place { get; set; }
+        public string birth_date { get; set; }
     }
 
     public class RootObject
