@@ -45,39 +45,51 @@ namespace AboriginalHeroes.Data
             return null;
         }
 
+
         private async Task GetDataAsync()
         {
             if (this._groups.Count != 0)
                 return;
 
-            Uri dataUri = new Uri("ms-appx:///DataModel/SampleData.json");
+            var dataService = new DataService();
 
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
-            string jsonText = await FileIO.ReadTextAsync(file);
-            JsonObject jsonObject = JsonObject.Parse(jsonText);
-            JsonArray jsonArray = jsonObject["Groups"].GetArray();
+            DataGroup group1 = await dataService.GetDataGroup1();
 
-            foreach (JsonValue groupValue in jsonArray)
-            {
-                JsonObject groupObject = groupValue.GetObject();
-                DataGroup group = new DataGroup(groupObject["UniqueId"].GetString(),
-                                                            groupObject["Title"].GetString(),
-                                                            groupObject["Subtitle"].GetString(),
-                                                            groupObject["ImagePath"].GetString(),
-                                                            groupObject["Description"].GetString());
-
-                foreach (JsonValue itemValue in groupObject["Items"].GetArray())
-                {
-                    JsonObject itemObject = itemValue.GetObject();
-                    group.Items.Add(new DataItem(itemObject["UniqueId"].GetString(),
-                                                       itemObject["Title"].GetString(),
-                                                       itemObject["Subtitle"].GetString(),
-                                                       itemObject["ImagePath"].GetString(),
-                                                       itemObject["Description"].GetString(),
-                                                       itemObject["Content"].GetString()));
-                }
-                this.Groups.Add(group);
-            }
+            this.Groups.Add(group1);
         }
+        //private async Task GetDataAsync()
+        //{
+        //    if (this._groups.Count != 0)
+        //        return;
+
+        //    Uri dataUri = new Uri("ms-appx:///DataModel/SampleData.json");
+
+        //    StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
+        //    string jsonText = await FileIO.ReadTextAsync(file);
+        //    JsonObject jsonObject = JsonObject.Parse(jsonText);
+        //    JsonArray jsonArray = jsonObject["Groups"].GetArray();
+
+        //    foreach (JsonValue groupValue in jsonArray)
+        //    {
+        //        JsonObject groupObject = groupValue.GetObject();
+        //        DataGroup group = new DataGroup(groupObject["UniqueId"].GetString(),
+        //                                                    groupObject["Title"].GetString(),
+        //                                                    groupObject["Subtitle"].GetString(),
+        //                                                    groupObject["ImagePath"].GetString(),
+        //                                                    groupObject["Description"].GetString());
+
+        //        foreach (JsonValue itemValue in groupObject["Items"].GetArray())
+        //        {
+        //            JsonObject itemObject = itemValue.GetObject();
+        //            group.Items.Add(new DataItem(itemObject["UniqueId"].GetString(),
+        //                                               itemObject["Title"].GetString(),
+        //                                               itemObject["Subtitle"].GetString(),
+        //                                               itemObject["ImagePath"].GetString(),
+        //                                               itemObject["Description"].GetString(),
+        //                                               itemObject["Content"].GetString()));
+        //        }
+        //        this.Groups.Add(group);
+        //    }
+        //}
     }
 }
