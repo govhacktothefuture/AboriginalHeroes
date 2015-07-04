@@ -114,11 +114,6 @@ namespace AboriginalHeroes.Data
             return group;
         }
 
-        public DataGroup GetDataGroup3()
-        {
-            return null;
-        }
-
         public async Task<string> GetGroup2Images(string name)
         {
             string jsonString = await GetJsonStream(string.Format("https://api.naa.gov.au/naa/api/v1/recorditem/search-series-b2455?keyword={0}&rows=1&page=1&app_id=598e8f24&app_key=bf81bc01f4f7c9b74e20be0ce7527395", name));
@@ -137,15 +132,18 @@ namespace AboriginalHeroes.Data
             foreach (DataModels.Daa.Item groupItem in dataGroup.Items)
             {
                 string id = groupItem.name;
-                string title = groupItem.rank;
-                string subtitle = groupItem.serviceDate;
+                string title = groupItem.name;
+                string subtitle = groupItem.rank;
                 string imagePath = groupItem.photo;
-                string description = string.Format("Place of birth: {0},{1}\n Place of death: {2},{3}",
+                string description = string.Format("Name: {0}\nRank: {1}\nPlace of birth: {2},{3}\nPlace of death:{4},{5}\nService Date: {6}",
+                                        groupItem.name,
+                                        groupItem.rank,
                                         groupItem.placeOfBirthLat,
                                         groupItem.placeOfBirthLong,
                                         groupItem.placeOfDeathLat,
-                                        groupItem.placeOfDeathLong);
-                string content = "TODO: add content";
+                                        groupItem.placeOfDeathLong,
+                                        groupItem.serviceDate);
+                string content = string.Empty;
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
                 group.Items.Add(item);
@@ -166,7 +164,7 @@ namespace AboriginalHeroes.Data
                 string subtitle = groupItem.Subtitle;
                 string imagePath = groupItem.ImagePath;
                 string description = groupItem.Description;
-                string content = "TODO: add content";
+                string content = string.Empty;
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
                 group.Items.Add(item);

@@ -48,7 +48,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Image x:Name="ItemImage" Source="{Binding ImagePath, Mode=OneWay}" MaxHeight ="1000"  MaxWidth="700" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10"/>
                     <StackPanel x:Name="personDetail" HorizontalAlignment="Right" VerticalAlignment="Top"  MaxWidth="350" Margin="50,10,50,0">
-                        <TextBlock Text="Context: " Style="{StaticResource SubheaderTextBlockStyle}"/>
+                        <TextBlock Text="Description: " Style="{StaticResource SubheaderTextBlockStyle}"/>
                         <TextBlock x:Name="description1" Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" MaxHeight="560" MaxWidth="400"/>
                         <TextBlock Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="360"/>
                     </StackPanel>
