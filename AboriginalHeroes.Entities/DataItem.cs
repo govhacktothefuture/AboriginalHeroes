@@ -29,6 +29,11 @@ namespace AboriginalHeroes.Entities
 
         public GroupType GroupType { get; set; }
 
+        public double PlaceOfBirthLat { get; set; }
+        public double PlaceOfBirthLong { get; set; }
+        public double PlaceOfDeathLat { get; set; }
+        public double PlaceOfDeathLong { get; set; }
+
 
         public override string ToString()
         {
@@ -39,6 +44,7 @@ namespace AboriginalHeroes.Entities
     public enum GroupType
     {
         Person,
+        PersonWithMap,
         Document,
         Video
     }

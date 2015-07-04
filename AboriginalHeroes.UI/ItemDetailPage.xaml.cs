@@ -67,16 +67,13 @@ namespace AboriginalHeroes.UI
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var item = await DataSource.GetItemAsync((String)e.NavigationParameter);
-                            
+
             this.DefaultViewModel["Item"] = item;
 
             DataItem dataItem = (DataItem)item;
             if (dataItem.Subtitle == "Photograph") pageTitle.Text = "Indigenous Servicemen Photo: " + item.UniqueId;
-            //if (dataItem.Subtitle == "Photograph") secondTitle.Text = "";
-            //if (dataItem.Subtitle == "Photograph") subTitle.Text = "";
-            //if(item.GetType()=="PHOTOGRAPH")
 
-            secondTitle.Visibility= dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            secondTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
             subTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
             content.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
             description.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
@@ -86,8 +83,46 @@ namespace AboriginalHeroes.UI
 
             ItemVideo.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
             ItemImage.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Collapsed : Visibility.Visible;
-
+            SetupMap(dataItem);
         }
+
+        private void SetupMap(DataItem item)
+        {
+            if (item.GroupType != GroupType.PersonWithMap)
+            {
+                myMap.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            var locationCollection = new Bing.Maps.LocationCollection
+            {
+                 new Bing.Maps.Location(item.PlaceOfBirthLat,item.PlaceOfBirthLong)
+                 , new Bing.Maps.Location(item.PlaceOfDeathLat,item.PlaceOfDeathLong)
+            };
+
+            var locationRect = new Bing.Maps.LocationRect(locationCollection);
+
+            myMap.SetView(locationRect, TimeSpan.FromSeconds(3));
+            AddMapPushPin(item);
+        }
+
+        public void AddMapPushPin(DataItem item)
+        {
+            var pushpinBorn = new Bing.Maps.Pushpin();
+            pushpinBorn.Text = "1";
+            pushpinBorn.Background = new SolidColorBrush(Windows.UI.Colors.Blue);
+            
+            Bing.Maps.MapLayer.SetPosition(pushpinBorn, new Bing.Maps.Location(item.PlaceOfBirthLat, item.PlaceOfBirthLong));
+            myMap.Children.Add(pushpinBorn);
+
+            var pushpinDeath = new Bing.Maps.Pushpin();
+            pushpinDeath.Text = "2";
+            pushpinDeath.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+            Bing.Maps.MapLayer.SetPosition(pushpinDeath, new Bing.Maps.Location(item.PlaceOfDeathLat, item.PlaceOfDeathLong));
+            myMap.Children.Add(pushpinDeath);
+        }
+    
+
 
         #region NavigationHelper registration
 

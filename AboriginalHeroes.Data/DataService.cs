@@ -146,31 +146,16 @@ namespace AboriginalHeroes.Data
                 string content = string.Empty;
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                item.PlaceOfBirthLat = Convert.ToDouble(groupItem.placeOfBirthLat);
+                item.PlaceOfBirthLong = Convert.ToDouble(groupItem.placeOfBirthLong);
+                item.PlaceOfDeathLat = Convert.ToDouble(groupItem.placeOfDeathLat);
+                item.PlaceOfDeathLong = Convert.ToDouble(groupItem.placeOfDeathLong);
+                item.GroupType = GroupType.PersonWithMap;
                 group.Items.Add(item);
             }
             return group;
         }
-
-        public async Task<DataGroup> GetDataGroup5()
-        {
-            RootObject2 rootobject = await GetLocalFile<RootObject2>("ms-appx:///AboriginalHeroes.Data/DataModels/local/awm.json");
-            DataGroup group = new DataGroup("5", "Indigenous Personnel", "World War 1 - Group 5", "", "Here is the group description");
-
-            DataModels.Awm.Group dataGroup = rootobject.Groups.First();
-            foreach (DataModels.Awm.Item groupItem in dataGroup.Items)
-            {
-                string id = groupItem.UniqueId;
-                string title = groupItem.Title;
-                string subtitle = groupItem.Subtitle;
-                string imagePath = groupItem.ImagePath;
-                string description = groupItem.Description;
-                string content = string.Empty;
-
-                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
-                group.Items.Add(item);
-            }
-            return group;
-        }
+     
 
         public async Task<DataGroup> GetDataGroupVideos()
         {     
