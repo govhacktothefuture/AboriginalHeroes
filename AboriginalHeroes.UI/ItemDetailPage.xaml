@@ -33,7 +33,16 @@
             TODO: Content should be placed within the following grid 
                   to show details for the current item
         -->
-        <Grid Grid.Row="1" x:Name="contentRegion"/>
+
+        <Grid Grid.Row="1" x:Name="contentRegion">
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="50,0,0,0">
+                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+                <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60"/>
+            </StackPanel>
+        </Grid>
+
+
 
         <!-- Back button and page title -->
         <Grid>

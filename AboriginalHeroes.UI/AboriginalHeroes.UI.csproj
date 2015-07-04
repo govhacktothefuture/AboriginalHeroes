@@ -136,6 +136,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\logo_50_50_360.png" />
     <Content Include="logo_310_150.scale-100.png" />
     <None Include="AboriginalHeroes.UI_TemporaryKey.pfx" />
     <None Include="Common\ReadMe.txt" />
