@@ -40,7 +40,9 @@
                 <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                 <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60"/>
                 <TextBlock Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="160"/>
-                <Image Source="{Binding ImagePath, Mode=OneWay}" Width="300" HorizontalAlignment="Left" Margin="10,10"/>
+                <Image x:Name="ItemImage" Source="{Binding ImagePath, Mode=OneWay}" Width="300" HorizontalAlignment="Left" Margin="10,10"/>
+
+                <MediaElement x:Name="ItemVideo" Source="{Binding VideoUrl}" AutoPlay="True" MediaFailed="ItemVideo_MediaFailed" Width="600" HorizontalAlignment="Center" Margin="50" />
             </StackPanel>
         </Grid>
 

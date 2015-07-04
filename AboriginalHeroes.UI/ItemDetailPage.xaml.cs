@@ -68,6 +68,12 @@ namespace AboriginalHeroes.UI
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var item = await DataSource.GetItemAsync((String)e.NavigationParameter);
             this.DefaultViewModel["Item"] = item;
+
+            DataItem dataItem = (DataItem)item;
+             
+            ItemVideo.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
+            ItemImage.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Collapsed : Visibility.Visible;
+
         }
 
         #region NavigationHelper registration
@@ -93,5 +99,10 @@ namespace AboriginalHeroes.UI
         }
 
         #endregion
+
+        private void ItemVideo_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
     }
 }

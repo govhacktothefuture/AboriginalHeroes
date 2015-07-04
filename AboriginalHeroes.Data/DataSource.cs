@@ -53,12 +53,12 @@ namespace AboriginalHeroes.Data
 
             var dataService = new DataService();
 
-          //  DataGroup group1 = await dataService.GetDataGroup1();
-          //  DataGroup group2 = await dataService.GetDataGroup2();
+            DataGroup group1 = await dataService.GetDataGroup1();
+            DataGroup group2 = await dataService.GetDataGroup2();
             DataGroup videos = await dataService.GetDataGroupVideos();
 
-           // this.Groups.Add(group1);
-          //  this.Groups.Add(group2);
+            this.Groups.Add(group1);
+            this.Groups.Add(group2);
             Groups.Add(videos);
         }
 

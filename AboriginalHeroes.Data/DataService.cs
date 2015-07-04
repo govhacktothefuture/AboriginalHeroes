@@ -132,6 +132,7 @@ namespace AboriginalHeroes.Data
                 string description = result.description;
                 string content = "TODO: Create some content based on the result;";
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                item.VideoUrl = videoUrl;
                 item.GroupType = GroupType.Video;
                 group.Items.Add(item);
             }
