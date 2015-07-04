@@ -31,11 +31,19 @@ namespace AboriginalHeroes.Data
 
         public async Task<AboriginalHeroes.Data.DataModels.Awm.RootObject> GetAwmData(string queryString)
         {
-            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20",queryString));
-
+            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20",queryString));                                                                    
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
             return rootObject;             
         }
+
+        public async Task<AboriginalHeroes.Data.DataModels.Awm.RootObject> GetAwmFilmData()
+        {
+            string jsonString = await GetJsonStream(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q=related_subjects:%22Aboriginal%22%20AND%20type:%22Film%22%20");
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
+            return rootObject;
+        }
+
+        
 
         public async Task<AboriginalHeroes.Data.DataModels.Naa.RootObject> GetNaaData(string queryString)
         {
@@ -48,6 +56,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup1()
         {
             //roll_type:%22Roll%20of%20Honour%22
+                                                                                         
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");         
             //RootObject rootObject = await GetAwmData(@"roll_type:""Roll of Honour"" AND related_subjects:""Indigenous"" AND type:""Photograph"" ");//indigenous            
             DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
@@ -67,6 +76,7 @@ namespace AboriginalHeroes.Data
                 if (result.accession_number != null) content.Append("\nAccess Number: " + result.accession_number);
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content.ToString());
+                item.GroupType = GroupType.Person;
                 group.Items.Add(item);
             }
             return group;
@@ -87,6 +97,7 @@ namespace AboriginalHeroes.Data
                 string barcode = result.barcode;
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                item.GroupType = GroupType.Document;
                 group.Items.Add(item);
             }
             return group;
@@ -107,20 +118,21 @@ namespace AboriginalHeroes.Data
         }
 
         public async Task<DataGroup> GetDataGroupVideos()
-        {
-      //  https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q=related_subjects:%22Aboriginal%22%20AND%20type:%22Film%22%20
-            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData(@"related_subjects:""22Aboriginal"" AND type:""22Film"" ");
+        {     
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmFilmData();
             //RootObject rootObject = await GetAwmData(@"roll_type:""Roll of Honour"" AND related_subjects:""Indigenous"" AND type:""Photograph"" ");//indigenous            
-            DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
+            DataGroup group = new DataGroup("3", "Videos", "The film and videos include many collections including oral histories, film commissions", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;
                 string title = result.title;
                 string subtitle = result.base_rank;
-                string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG", result.accession_number);
+                string imagePath = @"Images/video.png";
+                string videoUrl = string.Format(@"http://static.awm.gov.au/video/{0}.mp4", result.accession_number);
                 string description = result.description;
                 string content = "TODO: Create some content based on the result;";
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                item.GroupType = GroupType.Video;
                 group.Items.Add(item);
             }
             return group;
