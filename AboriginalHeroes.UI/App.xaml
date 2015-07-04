@@ -1,0 +1,15 @@
+﻿<Application
+    x:Class="AboriginalHeroes.UI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AboriginalHeroes.UI"
+    xmlns:localData="using:AboriginalHeroes.UI.Data">
+
+    <Application.Resources>
+
+        <!-- Application-specific resources -->
+
+        <x:String x:Key="AppName">AboriginalHeroes.UI</x:String>
+
+    </Application.Resources>
+</Application>
