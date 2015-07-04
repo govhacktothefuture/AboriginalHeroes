@@ -57,7 +57,7 @@ namespace AboriginalHeroes.DataTests
                 if (ds.Groups.Count != 0)
                     return;
 
-                Uri dataUri = new Uri("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
+                Uri dataUri = new Uri("ms-appx:///AboriginalHeroes.Data/DataModels/local/awm.json");
 
                 StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
                 string jsonText = await FileIO.ReadTextAsync(file);

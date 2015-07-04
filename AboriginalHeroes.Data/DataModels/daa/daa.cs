@@ -10,8 +10,10 @@ namespace AboriginalHeroes.Data.DataModels.Daa
     {
         public string name { get; set; }
         public string rank { get; set; }
-        public string placeOfBirth { get; set; }
-        public string died { get; set; }
+        public string placeOfBirthLat { get; set; }
+        public string placeOfBirthLong { get; set; }
+        public string placeOfDeathLat { get; set; }
+        public string placeOfDeathLong { get; set; }
         public string serviceDate { get; set; }
         public string photo { get; set; }
         public string article { get; set; }

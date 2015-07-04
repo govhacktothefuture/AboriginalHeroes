@@ -1,5 +1,5 @@
 {
-	 "Groups":  {
+	 "Groups":  [{
 		 "UniqueId": "Group-3",
 		 "Title":"Group Title: Australian War Memorial",
 		 "Subtitle":"Group subtitle:",
@@ -54,5 +54,5 @@
                 "ImagePath":"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01651.001.JPG",
                 "Description":"The eldest of 12 children, Alfred John Henry Lovett was one of the Gunditjmara people from Victoriaâ€™s western districts. While Australia was in the midst of the Gallipoli campaign, 35-year-old Alfred joined the rush of young men eager to enlist in the Australian Imperial Force. Four of his brothers followed in his footsteps."				
 		}]
-	}
+	}]
 }

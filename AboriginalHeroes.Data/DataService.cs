@@ -31,14 +31,14 @@ namespace AboriginalHeroes.Data
             return content;
         }
 
-        private async Task<Data.DataModels.Daa.RootObject> GetLocalFile(string uriPath)
+        private async Task<T> GetLocalFile<T>(string uriPath)
         {
             Uri dataUri = new Uri(uriPath);
 
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
             string jsonText = await FileIO.ReadTextAsync(file);
 
-            Data.DataModels.Daa.RootObject rootObj = JsonConvert.DeserializeObject<Data.DataModels.Daa.RootObject>(jsonText);
+            T rootObj = JsonConvert.DeserializeObject<T>(jsonText);
 
             return rootObj;
         }
@@ -133,21 +133,48 @@ namespace AboriginalHeroes.Data
 
         public async Task<DataGroup> GetDataGroup4()
         {
-            AboriginalHeroes.Data.DataModels.Daa.RootObject rootobject = await GetLocalFile("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
+            DataModels.Daa.RootObject rootobject = await GetLocalFile<DataModels.Daa.RootObject>("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
             DataGroup group = new DataGroup("4", "Indigenous Personnel", "World War 1 - Group 4", "", "Here is the group description");
 
-            AboriginalHeroes.Data.DataModels.Daa.Group dataGroup = rootobject.Groups.First();
+            DataModels.Daa.Group dataGroup = rootobject.Groups.First();
             foreach (DataModels.Daa.Item groupItem in dataGroup.Items)
             {
                 string id = groupItem.name;
                 string title = groupItem.rank;
                 string subtitle = groupItem.serviceDate;
                 string imagePath = groupItem.photo;
-                string description = groupItem.placeOfBirth;
+                string description = string.Format("Place of birth: {0},{1}\n Place of death: {2},{3}",
+                                        groupItem.placeOfBirthLat,
+                                        groupItem.placeOfBirthLong,
+                                        groupItem.placeOfDeathLat,
+                                        groupItem.placeOfDeathLong);
                 string content = "TODO: add content";
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
                 group.Items.Add(item);
+            }
+            return group;
+        }
+
+        public async Task<DataGroup> GetDataGroup5()
+        {
+            RootObject2 rootobject = await GetLocalFile<RootObject2>("ms-appx:///AboriginalHeroes.Data/DataModels/local/awm.json");
+            DataGroup group = new DataGroup("5", "Indigenous Personnel", "World War 1 - Group 5", "", "Here is the group description");
+
+            DataModels.Awm.Group dataGroup = rootobject.Groups.First();
+            foreach (DataModels.Awm.Item groupItem in dataGroup.Items)
+            {
+                string id = groupItem.UniqueId;
+                string title = groupItem.Title;
+                string subtitle = groupItem.Subtitle;
+                string imagePath = groupItem.ImagePath;
+                string description = groupItem.Description;
+                string content = "TODO: add content";
+
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                group.Items.Add(item);
+            }
+            return group;
         }
 
         public async Task<DataGroup> GetDataGroupVideos()
