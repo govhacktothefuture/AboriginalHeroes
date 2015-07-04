@@ -67,7 +67,26 @@ namespace AboriginalHeroes.UI
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var item = await DataSource.GetItemAsync((String)e.NavigationParameter);
+            //((Entities.DataItem)item).Title = "LOLOLOLO";
+                
             this.DefaultViewModel["Item"] = item;
+
+            DataItem dataItem = (DataItem)item;
+            if (((Entities.DataItem)item).Subtitle == "Photograph") pageTitle.Text = "Indigenous Servicemen Photo: " + item.UniqueId;
+            if (((Entities.DataItem)item).Subtitle == "Photograph") secondTitle.Text = "";
+            if (((Entities.DataItem)item).Subtitle == "Photograph") subTitle.Text = "";
+            //if(item.GetType()=="PHOTOGRAPH")
+
+            secondTitle.Visibility= dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            subTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            content.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            description.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+
+            personDetail.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Visible : Visibility.Collapsed;
+
+            ItemVideo.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
+            ItemImage.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Collapsed : Visibility.Visible;
+
         }
 
         #region NavigationHelper registration
@@ -93,5 +112,10 @@ namespace AboriginalHeroes.UI
         }
 
         #endregion
+
+        private void ItemVideo_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
     }
 }
