@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModels\awm\awm.cs" />
+    <Compile Include="DataModels\naa\naa.cs" />
     <Compile Include="DataService.cs" />
     <Compile Include="DataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

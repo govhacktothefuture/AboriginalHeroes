@@ -26,15 +26,20 @@ namespace AboriginalHeroes.Data
             return content;
         }
 
-        //https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q=related_subjects:%22Indigenous%20servicemen%22%20AND%20type:%22Photograph%22%20
-
         public async Task<RootObject> GetAwmData(string queryString)
         {
-            string jsonString = null;                      
-            jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20",queryString));
-           
-            RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(jsonString);
+            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20",queryString));
+
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(jsonString);
             return rootObject;             
+        }
+
+        public async Task<AboriginalHeroes.Data.DataModels.Naa.RootObject> GetNaaData(string queryString)
+        {
+            string jsonString = await GetJsonStream(string.Format(@"https://api.naa.gov.au/naa/api/v1/person/search-series-b2455?keyword={0}&rows=50&page=1&app_id=598e8f24&app_key=bf81bc01f4f7c9b74e20be0ce7527395", queryString));
+
+            AboriginalHeroes.Data.DataModels.Naa.RootObject rootObject = JsonConvert.DeserializeObject<AboriginalHeroes.Data.DataModels.Naa.RootObject>(jsonString);
+            return rootObject;
         }
 
         public async Task<DataGroup> GetDataGroup1()
@@ -50,10 +55,30 @@ namespace AboriginalHeroes.Data
                 //string imagePath = @"http://www.cv.vic.gov.au/existingmedia/10583/AboriginalServicemen1.jpg";
                 string description = result.description;
                 string content = "TODO: Create some content based on the result;";
-                DataItem item = new DataItem(result.id,title,subtitle,imagePath,description,content);
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
                 group.Items.Add(item);
             }
             return group;
+        }
+
+        public async Task<DataGroup> GetDataGroup2()
+        {
+            AboriginalHeroes.Data.DataModels.Naa.RootObject rootobject = await GetNaaData("aboriginal");
+            DataGroup group = new DataGroup("2", "Heroes 2", "World War 1 - Group 2", "", "Here is the group description");
+            foreach (AboriginalHeroes.Data.DataModels.Naa.ResultSet result in rootobject.ResultSet)
+            {
+                string id = result.person_id.ToString();
+                string title = result.name;
+                string subtitle = result.first_name + " " + result.family_name;
+                string imagePath = "TODO: link to images if possible?";
+                string description = "TODO:  ADD Description";
+                string content = "TODO: add content";
+
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                group.Items.Add(item);
+            }
+            return group;
+
         }
 
     }
