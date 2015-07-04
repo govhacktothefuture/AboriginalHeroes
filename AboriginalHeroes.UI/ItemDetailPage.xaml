@@ -39,9 +39,10 @@
 
         <Grid Grid.Row="1" x:Name="contentRegion">
             <StackPanel VerticalAlignment="Top" Margin="50,10,0,0">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60"/>
+
+                <TextBlock x:Name="secondTitle" Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" />
+                <TextBlock x:Name="subTitle" Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+                <TextBlock x:Name="description" Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60"/>
                 <TextBlock Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="160"/>
                 <Image x:Name="ItemImage" Source="{Binding ImagePath, Mode=OneWay}" Width="300" HorizontalAlignment="Left" Margin="10,10"/>
 

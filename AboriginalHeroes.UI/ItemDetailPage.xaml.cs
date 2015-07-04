@@ -67,6 +67,8 @@ namespace AboriginalHeroes.UI
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var item = await DataSource.GetItemAsync((String)e.NavigationParameter);
+            //((Entities.DataItem)item).Title = "LOLOLOLO";
+                
             this.DefaultViewModel["Item"] = item;
 
             DataItem dataItem = (DataItem)item;
