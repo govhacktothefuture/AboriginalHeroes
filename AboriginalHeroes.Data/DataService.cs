@@ -54,11 +54,8 @@ namespace AboriginalHeroes.Data
         }
 
         public async Task<DataGroup> GetDataGroup1()
-        {
-            //roll_type:%22Roll%20of%20Honour%22
-                                                                                         
-            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");         
-            //RootObject rootObject = await GetAwmData(@"roll_type:""Roll of Honour"" AND related_subjects:""Indigenous"" AND type:""Photograph"" ");//indigenous            
+        {                                                                                                     
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");                     
             DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
@@ -71,7 +68,7 @@ namespace AboriginalHeroes.Data
                 if (result.date_made != null)  content.Append("Date Made: " + result.date_made[0]);
                 if (result.place_made != null) content.Append("\nPlace: " + result.place_made[0]);
                 if (result.maker != null) content.Append("\nMaker: " + result.maker[0]);
-                if (result.related_conflicts != null) content.Append("\nConflict(s): " + result.related_conflicts[0]);
+                if (result.related_conflicts != null) content.Append("\n\nConflict(s): " + string.Join(Environment.NewLine,result.related_conflicts.ToArray()));
                 if (result.related_people != null) content.Append("\nRelated Peoples(s): " + string.Join(", ", result.related_people));
                 if (result.accession_number != null) content.Append("\nAccess Number: " + result.accession_number);
 
@@ -119,8 +116,7 @@ namespace AboriginalHeroes.Data
 
         public async Task<DataGroup> GetDataGroupVideos()
         {     
-            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmFilmData();
-            //RootObject rootObject = await GetAwmData(@"roll_type:""Roll of Honour"" AND related_subjects:""Indigenous"" AND type:""Photograph"" ");//indigenous            
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmFilmData();            
             DataGroup group = new DataGroup("3", "Videos", "The film and videos include many collections including oral histories, film commissions", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
@@ -130,7 +126,7 @@ namespace AboriginalHeroes.Data
                 string imagePath = @"Images/video.png";
                 string videoUrl = string.Format(@"http://static.awm.gov.au/video/{0}.mp4", result.accession_number);
                 string description = result.description;
-                string content = "TODO: Create some content based on the result;";
+                string content = null;//"TODO: Create some content based on the result;";
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
                 item.VideoUrl = videoUrl;
                 item.GroupType = GroupType.Video;
