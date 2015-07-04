@@ -70,7 +70,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup1()
         {
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");         
-            DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
+            DataGroup group = new DataGroup("1", "Wartime snapshots", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;
@@ -131,7 +131,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup4()
         {
             DataModels.Daa.RootObject rootobject = await GetLocalFile<DataModels.Daa.RootObject>("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
-            DataGroup group = new DataGroup("4", "Indigenous Personnel", "World War 1 - Group 4", "", "Here is the group description");
+            DataGroup group = new DataGroup("4", "Indigenous Profiles", "They Served with Honour", "", "Tales of courage, valour, of finding love, and of continued struggles post-war.");
 
             DataModels.Daa.Group dataGroup = rootobject.Groups.First();
             foreach (DataModels.Daa.Item groupItem in dataGroup.Items)
