@@ -136,8 +136,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Common\ReadMe.txt" />
     <None Include="AboriginalHeroes.UI_TemporaryKey.pfx" />
+    <None Include="Common\ReadMe.txt" />
     <Content Include="DataModel\SampleData.json" />
   </ItemGroup>
   <ItemGroup>
