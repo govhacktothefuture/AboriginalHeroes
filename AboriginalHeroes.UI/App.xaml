@@ -9,7 +9,7 @@
 
         <!-- Application-specific resources -->
 
-        <x:String x:Key="AppName">Indigenous Heroes</x:String>
+        <x:String x:Key="AppName">Indigenous War Heroes</x:String>
 
     </Application.Resources>
 </Application>
