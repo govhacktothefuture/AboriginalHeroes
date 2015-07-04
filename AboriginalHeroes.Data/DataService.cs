@@ -45,7 +45,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup1()
         {
             RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");//indigenous            
-            DataGroup group = new DataGroup("1", "Heroes 1", "World War 1", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Here is the group description");
+            DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;
