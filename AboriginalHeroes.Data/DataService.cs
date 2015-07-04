@@ -87,10 +87,10 @@ namespace AboriginalHeroes.Data
             {
                 string id = result.person_id.ToString();
                 string title = result.name;
-                string subtitle = result.first_name + " " + result.family_name;
+                string subtitle = result.place_of_birth != null ? result.place_of_birth.FirstOrDefault().ToString() : "";
                 string imagePath = await GetGroup2Images(result.name);
-                string description = "TODO:  ADD Description";
-                string content = "TODO: add content";
+                string description = string.Format("Service Number(s): {0}",result.service_numbers != null ? string.Join(Environment.NewLine, result.service_numbers.Select(o => o.ToString()).ToArray()) : "");
+                string content = string.Format("Place of Enlistment: {0}",result.place_of_enlistment != null ? string.Join(Environment.NewLine, result.place_of_enlistment.Select(o => o.ToString()).ToArray()) : "");
                 string barcode = result.barcode;
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
