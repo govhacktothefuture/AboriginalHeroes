@@ -68,6 +68,8 @@ namespace AboriginalHeroes.UI
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var sampleDataGroups = await DataSource.GetGroupsAsync();
             this.DefaultViewModel["Groups"] = sampleDataGroups;
+            //var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
+            this.DefaultViewModel["Groups"] = sampleDataGroups.Take(5);
         }
 
         /// <summary>

@@ -59,39 +59,40 @@ namespace AboriginalHeroes.Data
             this.Groups.Add(group1);
             this.Groups.Add(group2);
         }
-        //private async Task GetDataAsync()
-        //{
-        //    if (this._groups.Count != 0)
-        //        return;
 
-        //    Uri dataUri = new Uri("ms-appx:///DataModel/SampleData.json");
+        private async Task GetLocalDataAsync()
+        {
+            if (this._groups.Count != 0)
+                return;
 
-        //    StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
-        //    string jsonText = await FileIO.ReadTextAsync(file);
-        //    JsonObject jsonObject = JsonObject.Parse(jsonText);
-        //    JsonArray jsonArray = jsonObject["Groups"].GetArray();
+            Uri dataUri = new Uri("ms-appx:///../AboriginalHeroes.Data/DataModels/local/soldiers.json");
 
-        //    foreach (JsonValue groupValue in jsonArray)
-        //    {
-        //        JsonObject groupObject = groupValue.GetObject();
-        //        DataGroup group = new DataGroup(groupObject["UniqueId"].GetString(),
-        //                                                    groupObject["Title"].GetString(),
-        //                                                    groupObject["Subtitle"].GetString(),
-        //                                                    groupObject["ImagePath"].GetString(),
-        //                                                    groupObject["Description"].GetString());
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
+            string jsonText = await FileIO.ReadTextAsync(file);
+            JsonObject jsonObject = JsonObject.Parse(jsonText);
+            JsonArray jsonArray = jsonObject["Groups"].GetArray();
 
-        //        foreach (JsonValue itemValue in groupObject["Items"].GetArray())
-        //        {
-        //            JsonObject itemObject = itemValue.GetObject();
-        //            group.Items.Add(new DataItem(itemObject["UniqueId"].GetString(),
-        //                                               itemObject["Title"].GetString(),
-        //                                               itemObject["Subtitle"].GetString(),
-        //                                               itemObject["ImagePath"].GetString(),
-        //                                               itemObject["Description"].GetString(),
-        //                                               itemObject["Content"].GetString()));
-        //        }
-        //        this.Groups.Add(group);
-        //    }
-        //}
+            foreach (JsonValue groupValue in jsonArray)
+            {
+                JsonObject groupObject = groupValue.GetObject();
+                DataGroup group = new DataGroup(groupObject["UniqueId"].GetString(),
+                                                            groupObject["Title"].GetString(),
+                                                            groupObject["Subtitle"].GetString(),
+                                                            groupObject["ImagePath"].GetString(),
+                                                            groupObject["Description"].GetString());
+
+                foreach (JsonValue itemValue in groupObject["Items"].GetArray())
+                {
+                    JsonObject itemObject = itemValue.GetObject();
+                    group.Items.Add(new DataItem(itemObject["UniqueId"].GetString(),
+                                                       itemObject["Title"].GetString(),
+                                                       itemObject["Subtitle"].GetString(),
+                                                       itemObject["ImagePath"].GetString(),
+                                                       itemObject["Description"].GetString(),
+                                                       itemObject["Content"].GetString()));
+                }
+                this.Groups.Add(group);
+            }
+        }
     }
 }
