@@ -1,0 +1,54 @@
+{"Groups":[
+  {
+    "UniqueId": "Group-1",
+    "Title": "Group Title: 1",
+    "Subtitle": "Group subtitle: 1",
+    "ImagePath": "Assets/DarkGray.png",
+    "Description" : "Group Description: This is a test",
+    "Items":
+	[
+    {
+      "name": "Walter Christopher Saunders",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P00889.012.JPG",
+      "article": "https://www.awm.gov.au/education/walter-christopher-saunders/"
+    },
+    {
+      "name": "William Allan Irwin",
+      "name": "William Joseph Punch",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01625.003.JPG",
+      "article": "https://www.awm.gov.au/education/schools/resources/private-william-joseph-punch/"
+    },
+    {
+      "name": "Gilbert Williams",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01625.003.JPG",
+      "article": "https://www.awm.gov.au/education/schools/resources/gilbert-williams/"
+    },
+    {
+      "name": "William Reginald Rawlings",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01695.001.JPG",
+      "article": "https://www.awm.gov.au/node/9983"
+    },
+    {
+      "name": "The Dickerson Brothers",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/H05686A.JPG",
+      "article": "https://www.awm.gov.au/education/schools/resources/dickerson-brothers/"
+    },
+    {
+      "name": "Harry Thorpe",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01695.002.JPG",
+      "article": "https://www.awm.gov.au/education/schools/resources/harry-thorpe/"
+    },
+    {
+      "name": "Douglas Grant",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P11644.002.JPG",
+      "article": "https://www.awm.gov.au/education/schools/resources/private-douglas-grant/"
+    },
+    {
+      "name": "Alfred Lovett",
+      "photo": "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01651.001.JPG",
+      "article": "https://www.awm.gov.au/education/schools/resources/private-alfred-lovett/"
+    }
+  ]
+  }
+  ]
+};
