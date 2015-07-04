@@ -71,7 +71,10 @@ namespace AboriginalHeroes.UI
                 
             this.DefaultViewModel["Item"] = item;
 
-            
+            DataItem dataItem = (DataItem)item;
+             
+            ItemVideo.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
+            ItemImage.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Collapsed : Visibility.Visible;
 
         }
 
@@ -99,7 +102,7 @@ namespace AboriginalHeroes.UI
 
         #endregion
 
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        private void ItemVideo_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
 
         }

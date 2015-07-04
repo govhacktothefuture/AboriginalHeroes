@@ -99,15 +99,15 @@ namespace AboriginalHeroes.DataTests
             }
         }
 
-        [TestMethod]
-        public void GetGroup2Image()
-        {
-            var service = new DataService();
-            Task<string> task = service.GetGroup2Images("Charles Tednee Blackman");
-            task.Wait();
-            Assert.IsNotNull(task.Result);
-            return;
-        }
+        //[TestMethod]
+        //public void GetGroup2Image()
+        //{
+        //    var service = new DataService();
+        //    Task<string> task = service.GetGroup2Images("Charles Tednee Blackman");
+        //    task.Wait();
+        //    Assert.IsNotNull(task.Result);
+        //    return;
+        //}
 
 
     }

@@ -25,9 +25,22 @@ namespace AboriginalHeroes.Entities
         public string ImagePath { get; private set; }
         public string Content { get; private set; }
 
+        public string VideoUrl { get; set; }
+
+        public GroupType GroupType { get; set; }
+
+
         public override string ToString()
         {
             return this.Title;
         }
     }
+
+    public enum GroupType
+    {
+        Person,
+        Document,
+        Video
+    }
+
 }
