@@ -29,14 +29,14 @@ namespace AboriginalHeroes.Data
             return content;
         }
 
-        public async Task<AboriginalHeroes.Data.DataModels.Awm.RootObject> GetAwmData(string queryString)
+        public async Task<DataModels.Awm.RootObject> GetAwmData(string queryString)
         {
-            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20",queryString));                                                                    
+            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=10",queryString));                                                                    
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
             return rootObject;             
         }
 
-        public async Task<AboriginalHeroes.Data.DataModels.Awm.RootObject> GetAwmFilmData()
+        public async Task<DataModels.Awm.RootObject> GetAwmFilmData()
         {
             string jsonString = await GetJsonStream(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q=related_subjects:%22Aboriginal%22%20AND%20type:%22Film%22%20");
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
@@ -47,7 +47,7 @@ namespace AboriginalHeroes.Data
 
         public async Task<AboriginalHeroes.Data.DataModels.Naa.RootObject> GetNaaData(string queryString)
         {
-            string jsonString = await GetJsonStream(string.Format(@"https://api.naa.gov.au/naa/api/v1/person/search-series-b2455?keyword={0}&rows=50&page=1&app_id=598e8f24&app_key=bf81bc01f4f7c9b74e20be0ce7527395", queryString));
+            string jsonString = await GetJsonStream(string.Format(@"https://api.naa.gov.au/naa/api/v1/person/search-series-b2455?keyword={0}&rows=10&page=1&app_id=598e8f24&app_key=bf81bc01f4f7c9b74e20be0ce7527395", queryString));
 
             AboriginalHeroes.Data.DataModels.Naa.RootObject rootObject = JsonConvert.DeserializeObject<AboriginalHeroes.Data.DataModels.Naa.RootObject>(jsonString);
             return rootObject;

@@ -52,7 +52,10 @@
                         </StackPanel>
                     </StackPanel>
 
-                <MediaElement x:Name="ItemVideo" Source="{Binding VideoUrl}" AutoPlay="True" MediaFailed="ItemVideo_MediaFailed" Width="600" HorizontalAlignment="Center" Margin="50" />
+                <StackPanel>
+                 <MediaElement x:Name="ItemVideo" Source="{Binding VideoUrl}" AutoPlay="True" MediaFailed="ItemVideo_MediaFailed" Width="600" HorizontalAlignment="Center" Margin="50" />
+                    <TextBlock x:Name="txtVideoError" Text="Video is not available sorry" Visibility="Collapsed"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
 

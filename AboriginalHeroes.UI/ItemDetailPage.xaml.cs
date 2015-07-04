@@ -115,7 +115,7 @@ namespace AboriginalHeroes.UI
 
         private void ItemVideo_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-
+            txtVideoError.Visibility = Visibility.Visible;
         }
     }
 }
