@@ -1,0 +1,145 @@
+{
+  "Groups": [
+    {
+      "UniqueId": "Group-4",
+      "Title": "Group Title: Department of Aboriginal Affairs",
+      "ImagePath": "",
+      "Subtitle": "Department of Aboriginal Affairs",
+      "Description": "Group Description: Western Australian Aboriginal Servicemen",
+      "Items": [
+        {
+          "name": "Charles Hutchins",
+          "rank": "Private 307",
+          "placeOfBirthLat": "-33.6499446",
+		  "placeOfBirthLong": "115.3446115",
+          "placeOfDeathLat": "-33.9627271",
+          "placeOfDeathLong": "151.1334636",
+          "serviceDate": "6 March 1915 to 9 March 1921",
+          "photo": "Images/1.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "Larry Farmer",
+          "rank": "Private 621",
+          "placeOfBirthLat": "-33.6901492",
+          "placeOfBirthLong": "117.5560502",
+          "placeOfDeathLat": "46.227638",
+          "placeOfDeathLong": "2.213749",
+          "serviceDate": "13 March 1915 to 6 August 1916",
+          "photo": "Images/2.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "James Dickerson",
+          "rank": "Private 392",
+          "placeOfBirthLat": "-31.3460785",
+          "placeOfBirthLong": "115.9047126",
+          "placeOfDeathLat": "34.5531284",
+          "placeOfDeathLong": "18.0480105",
+          "serviceDate": "19 October 1914 to 30 August 1915",
+          "photo": "Images/3.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "Lewis Farmer",
+          "rank": "Private 421",
+          "placeOfBirthLat": "-33.6901492",
+          "placeOfBirthLong": "117.5560502",
+          "placeOfDeathLat": "-33.6901492",
+          "placeOfDeathLong": "117.5560502",
+          "serviceDate": "9 March 1915 to 10 June 1919",
+          "photo": "Images/4.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "William John Jackson",
+          "rank": "Private 1952",
+          "placeOfBirthLat": "-33.3270685",
+          "placeOfBirthLong": "115.6391736",
+          "placeOfDeathLat": "46.227638",
+          "placeOfDeathLong": "2.213749",
+          "serviceDate": "24 June 1915 to 18 November 1916",
+          "photo": "Images/6.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "Randell Mason",
+          "rank": "Private 897",
+          "placeOfBirthLat": "-34.46598",
+          "placeOfBirthLong": "117.516696",
+          "placeOfDeathLat": "-31.9535132",
+          "placeOfDeathLong": "115.8570471",
+          "serviceDate": "15 March 1915 to 8 March 1917",
+          "photo": "Images/7.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "William Mason",
+          "rank": "Private 810",
+          "placeOfBirthLat": "-34.46598",
+          "placeOfBirthLong": "117.516696",
+          "placeOfDeathLat": "-31.9535132",
+          "placeOfDeathLong": "115.8570471",
+          "serviceDate": "4 January 1915 to 10 October 1918",
+          "photo": "Images/8.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "Arthur Edward McCallum",
+          "rank": "Private 165",
+          "placeOfBirthLat": "-35.0238227",
+          "placeOfBirthLong": "117.8847286",
+          "placeOfDeathLat": "-29.21104549999999",
+          "placeOfDeathLong": "116.0092433",
+          "serviceDate": "9 September 1914 to 17 February 1919",
+          "photo": "Images/9.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "James Melbourne",
+          "rank": "Private 2515",
+          "placeOfBirthLat": "-31.8884922",
+          "placeOfBirthLong": "116.7684477",
+          "placeOfDeathLat": "-37.8142155",
+          "placeOfDeathLong": "144.9632307",
+          "serviceDate": "21 March 1915 to 22 September 1916",
+          "photo": "Images/10.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "Gordon Charles Naley",
+          "rank": "Private 1310",
+          "placeOfBirthLat": "-32.5568964",
+          "placeOfBirthLong": "115.7124404",
+          "placeOfDeathLat": "-34.92862119999999",
+          "placeOfDeathLong": "138.5999594",
+          "serviceDate": "17 September 1914 to 21 September 1919",
+          "photo": "Images/11.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "Frederick Leslie Sayers",
+          "rank": "Sergeant 1042",
+          "placeOfBirthLat": "-33.6499446",
+          "placeOfBirthLong": "115.3446115",
+          "placeOfDeathLat": "-31.9453649",
+          "placeOfDeathLong": "115.8261808",
+          "serviceDate": "17 February 1915 to 5 October 1919",
+          "photo": "Images/12.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        },
+        {
+          "name": "Claude Shaw",
+          "rank": "Lance Sergeant 2413",
+          "placeOfBirthLat": "-31.3460785",
+          "placeOfBirthLong": "115.9047126",
+          "placeOfDeathLat": "-31.9535959",
+          "placeOfDeathLong": "115.8570118",
+          "serviceDate": "5 May 1915 to 3 June 1919",
+          "photo": "Images/13.png",
+          "article": "http://www.daa.wa.gov.au/globalassets/pdf-files/community-development/daa-gallipoli-book-email.pdf"
+        }
+      ]
+    }
+  ]
+}

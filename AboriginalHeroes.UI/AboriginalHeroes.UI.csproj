@@ -138,6 +138,19 @@
     </AppxManifest>
     <Content Include="Assets\logo_150_150.png" />
     <Content Include="Assets\logo_50_50_360.png" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\10.png" />
+    <Content Include="Images\11.png" />
+    <Content Include="Images\12.png" />
+    <Content Include="Images\13.png" />
+    <Content Include="Images\2.png" />
+    <Content Include="Images\3.png" />
+    <Content Include="Images\4.png" />
+    <Content Include="Images\5.png" />
+    <Content Include="Images\6.png" />
+    <Content Include="Images\7.png" />
+    <Content Include="Images\8.png" />
+    <Content Include="Images\9.png" />
     <Content Include="Images\art3072x2304_bw.jpg" />
     <Content Include="Images\TheyServedWithHonour.jpg" />
     <Content Include="Images\video.png" />

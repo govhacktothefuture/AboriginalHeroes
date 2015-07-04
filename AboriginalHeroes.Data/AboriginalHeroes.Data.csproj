@@ -108,7 +108,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModels\awm\awm2.cs" />
     <Compile Include="DataModels\awm\awm.cs" />
+    <Compile Include="DataModels\daa\daa.cs" />
     <Compile Include="DataModels\naa\naa.cs" />
     <Compile Include="DataService.cs" />
     <Compile Include="DataSource.cs" />
@@ -121,7 +123,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataModels\local\soldiers.json" />
+    <Content Include="DataModels\local\awm.json" />
+    <Content Include="DataModels\local\daa.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

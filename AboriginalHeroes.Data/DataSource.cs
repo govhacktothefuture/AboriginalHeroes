@@ -56,45 +56,15 @@ namespace AboriginalHeroes.Data
             DataGroup group1 = await dataService.GetDataGroup1();
             DataGroup group2 = await dataService.GetDataGroup2();
             DataGroup videos = await dataService.GetDataGroupVideos();
+            DataGroup group4 = await dataService.GetDataGroup4();
+            //DataGroup group5 = await dataService.GetDataGroup5(); dataset is broken
 
             this.Groups.Add(group1);
             this.Groups.Add(group2);
             Groups.Add(videos);
+            this.Groups.Add(group4);
+            //this.Groups.Add(group5);
         }
 
-        private async Task GetLocalDataAsync()
-        {
-            if (this._groups.Count != 0)
-                return;
-
-            Uri dataUri = new Uri("ms-appx:///../AboriginalHeroes.Data/DataModels/local/soldiers.json");
-
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
-            string jsonText = await FileIO.ReadTextAsync(file);
-            JsonObject jsonObject = JsonObject.Parse(jsonText);
-            JsonArray jsonArray = jsonObject["Groups"].GetArray();
-
-            foreach (JsonValue groupValue in jsonArray)
-            {
-                JsonObject groupObject = groupValue.GetObject();
-                DataGroup group = new DataGroup(groupObject["UniqueId"].GetString(),
-                                                            groupObject["Title"].GetString(),
-                                                            groupObject["Subtitle"].GetString(),
-                                                            groupObject["ImagePath"].GetString(),
-                                                            groupObject["Description"].GetString());
-
-                foreach (JsonValue itemValue in groupObject["Items"].GetArray())
-                {
-                    JsonObject itemObject = itemValue.GetObject();
-                    group.Items.Add(new DataItem(itemObject["UniqueId"].GetString(),
-                                                       itemObject["Title"].GetString(),
-                                                       itemObject["Subtitle"].GetString(),
-                                                       itemObject["ImagePath"].GetString(),
-                                                       itemObject["Description"].GetString(),
-                                                       itemObject["Content"].GetString()));
-                }
-                this.Groups.Add(group);
-            }
-        }
     }
 }

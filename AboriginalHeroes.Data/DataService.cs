@@ -7,10 +7,12 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 using AboriginalHeroes.Data.DataModels.Awm;
+using AboriginalHeroes.Data.DataModels.Daa;
 using AboriginalHeroes.Entities;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using AboriginalHeroes.Data.DataModels.Naa;
+using Windows.Storage;
 
 namespace AboriginalHeroes.Data
 {
@@ -29,7 +31,19 @@ namespace AboriginalHeroes.Data
             return content;
         }
 
-        public async Task<DataModels.Awm.RootObject> GetAwmData(string queryString)
+        private async Task<T> GetLocalFile<T>(string uriPath)
+        {
+            Uri dataUri = new Uri(uriPath);
+
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
+            string jsonText = await FileIO.ReadTextAsync(file);
+
+            T rootObj = JsonConvert.DeserializeObject<T>(jsonText);
+
+            return rootObj;
+        }
+
+        public async Task<AboriginalHeroes.Data.DataModels.Awm.RootObject> GetAwmData(string queryString)
         {
             string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=10",queryString));                                                                    
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
@@ -54,9 +68,9 @@ namespace AboriginalHeroes.Data
         }
 
         public async Task<DataGroup> GetDataGroup1()
-        {                                                                                                     
-            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");                     
-            DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
+        {
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");         
+            DataGroup group = new DataGroup("1", "Wartime snapshots", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;
@@ -65,7 +79,7 @@ namespace AboriginalHeroes.Data
                 string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);
                 string description = result.description;
                 StringBuilder content = new StringBuilder();
-                if (result.date_made != null)  content.Append("Date Made: " + result.date_made[0]);
+                if (result.date_made != null) content.Append("Date Made: " + result.date_made[0]);
                 if (result.place_made != null) content.Append("\nPlace: " + result.place_made[0]);
                 if (result.maker != null) content.Append("\nMaker: " + result.maker[0]);
                 if (result.related_conflicts != null) content.Append("\n\nConflict(s): " + string.Join(Environment.NewLine,result.related_conflicts.ToArray()));
@@ -82,7 +96,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup2()
         {
             AboriginalHeroes.Data.DataModels.Naa.RootObject rootobject = await GetNaaData("indigenous");
-            DataGroup group = new DataGroup("2", "Heroes 2", "World War 1 - Group 2", "", "Here is the group description");
+            DataGroup group = new DataGroup("2", "Enlisted Personnel", "World War 1 - Group 2", "", "Here is the group description");
             foreach (AboriginalHeroes.Data.DataModels.Naa.ResultSet result in rootobject.ResultSet)
             {
                 string id = result.person_id.ToString();
@@ -114,9 +128,55 @@ namespace AboriginalHeroes.Data
 
         }
 
+        public async Task<DataGroup> GetDataGroup4()
+        {
+            DataModels.Daa.RootObject rootobject = await GetLocalFile<DataModels.Daa.RootObject>("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
+            DataGroup group = new DataGroup("4", "Indigenous Profiles", "They Served with Honour", "", "Tales of courage, valour, of finding love, and of continued struggles post-war.");
+
+            DataModels.Daa.Group dataGroup = rootobject.Groups.First();
+            foreach (DataModels.Daa.Item groupItem in dataGroup.Items)
+            {
+                string id = groupItem.name;
+                string title = groupItem.rank;
+                string subtitle = groupItem.serviceDate;
+                string imagePath = groupItem.photo;
+                string description = string.Format("Place of birth: {0},{1}\n Place of death: {2},{3}",
+                                        groupItem.placeOfBirthLat,
+                                        groupItem.placeOfBirthLong,
+                                        groupItem.placeOfDeathLat,
+                                        groupItem.placeOfDeathLong);
+                string content = "TODO: add content";
+
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                group.Items.Add(item);
+            }
+            return group;
+        }
+
+        public async Task<DataGroup> GetDataGroup5()
+        {
+            RootObject2 rootobject = await GetLocalFile<RootObject2>("ms-appx:///AboriginalHeroes.Data/DataModels/local/awm.json");
+            DataGroup group = new DataGroup("5", "Indigenous Personnel", "World War 1 - Group 5", "", "Here is the group description");
+
+            DataModels.Awm.Group dataGroup = rootobject.Groups.First();
+            foreach (DataModels.Awm.Item groupItem in dataGroup.Items)
+            {
+                string id = groupItem.UniqueId;
+                string title = groupItem.Title;
+                string subtitle = groupItem.Subtitle;
+                string imagePath = groupItem.ImagePath;
+                string description = groupItem.Description;
+                string content = "TODO: add content";
+
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                group.Items.Add(item);
+            }
+            return group;
+        }
+
         public async Task<DataGroup> GetDataGroupVideos()
         {     
-            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmFilmData();            
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = await GetAwmFilmData();
             DataGroup group = new DataGroup("3", "Videos", "The film and videos include many collections including oral histories, film commissions", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {

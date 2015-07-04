@@ -3,9 +3,9 @@
 		 "UniqueId": "Group-3",
 		 "Title":"Group Title: Australian War Memorial",
 		 "Subtitle":"Group subtitle:",
-		 "ImagePath":"http://www.awm.gov.au/sites/default/files/anzac-diversity-span6.jpg"
-		 Description: "Group Description: Indigenous Australians serving in the Australian Imperial Force",
-		 Items: [{
+		 "ImagePath":"http://www.awm.gov.au/sites/default/files/anzac-diversity-span6.jpg",
+		 "Description": "Group Description: Indigenous Australians serving in the Australian Imperial Force",
+		 "Items": [{
 				"UniqueId":"Group-3-Item-1",
 				"Title":"Item Title: Walter Christopher Saunders",
 				"Subtitle":"Item Subtitle: ",
@@ -40,7 +40,7 @@
 				"Title":"Item Title: Harry Thorpe",
 				"Subtitle":"Item Subtitle: ",
                 "ImagePath":"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01695.002.JPG",
-                "Description":"Harry Thorpe was born to William and Lillian Thorpe at the Lake Tyers Mission Station near Lakes Entrance in Victoria. His father was a member of the Brabuwooloong tribe. He attended the local State School, helped on his father�s property and then found work as a labourer. He fell in love with and married Julia Scott in 1905 and had two sons, one of whom did not survive childhood."			
+                "Description":"Harry Thorpe was born to William and Lillian Thorpe at the Lake Tyers Mission Station near Lakes Entrance in Victoria. His father was a member of the Brabuwooloong tribe. He attended the local State School, helped on his fatherâ€™s property and then found work as a labourer. He fell in love with and married Julia Scott in 1905 and had two sons, one of whom did not survive childhood."			
 			},  {
 				"UniqueId":"Group-3-Item-7",
 				"Title":"Item Title: Douglas Grant",
@@ -52,8 +52,7 @@
 				"Title":"Item Title: Alfred Lovett",
 				"Subtitle":"Item Subtitle: ",
                 "ImagePath":"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/P01651.001.JPG",
-                "Description":"The eldest of 12 children, Alfred John Henry Lovett was one of the Gunditjmara people from Victoria�s western districts. While Australia was in the midst of the Gallipoli campaign, 35-year-old Alfred joined the rush of young men eager to enlist in the Australian Imperial Force. Four of his brothers followed in his footsteps."				
+                "Description":"The eldest of 12 children, Alfred John Henry Lovett was one of the Gunditjmara people from Victoriaâ€™s western districts. While Australia was in the midst of the Gallipoli campaign, 35-year-old Alfred joined the rush of young men eager to enlist in the Australian Imperial Force. Four of his brothers followed in his footsteps."				
 		}]
-	}
-	]
+	}]
 }
