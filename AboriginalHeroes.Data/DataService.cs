@@ -53,7 +53,7 @@ namespace AboriginalHeroes.Data
             {
                 string id = result.id;
                 string title = result.title;//"Photograph (" + result.id + ")";                    
-                string subtitle = result.base_rank;
+                string subtitle = "Photograph"; //result.base_rank;
                 string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);
                 //string imagePath = @"http://www.cv.vic.gov.au/existingmedia/10583/AboriginalServicemen1.jpg";
                 string description = result.description;
