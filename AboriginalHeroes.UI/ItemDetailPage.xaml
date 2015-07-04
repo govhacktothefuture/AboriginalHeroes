@@ -37,15 +37,23 @@
         <Grid Grid.Row="1" x:Name="contentRegion">
             <StackPanel VerticalAlignment="Top" Margin="50,10,0,0">
 
-                <TextBlock x:Name="secondTitle" Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" />
+                <TextBlock x:Name="secondTitle" Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="WrapWholeWords" />
                 <TextBlock x:Name="subTitle" Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                 <TextBlock x:Name="description" Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60"/>
-                <TextBlock Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="160"/>
-                <Image x:Name="ItemImage" Source="{Binding ImagePath, Mode=OneWay}" Width="300" HorizontalAlignment="Left" Margin="10,10"/>
+                <TextBlock x:Name="content" Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="160"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="ItemImage" Source="{Binding ImagePath, Mode=OneWay}" MaxHeight ="1000"  MaxWidth="700" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10"/>
+                    <StackPanel x:Name="personDetail" HorizontalAlignment="Right" VerticalAlignment="Top"  MaxWidth="350" Margin="50,10,50,0">
+                        <TextBlock Text="Context: " Style="{StaticResource BodyTextBlockStyle}"/> <TextBlock x:Name="description1" Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" MaxHeight="560" MaxWidth="400"/>
+                        <TextBlock Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="360"/>
+                        </StackPanel>
+                    </StackPanel>
 
                 <MediaElement x:Name="ItemVideo" Source="{Binding VideoUrl}" AutoPlay="True" MediaFailed="ItemVideo_MediaFailed" Width="600" HorizontalAlignment="Center" Margin="50" />
             </StackPanel>
         </Grid>
+
+        
 
 
 

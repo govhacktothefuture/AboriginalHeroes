@@ -72,7 +72,18 @@ namespace AboriginalHeroes.UI
             this.DefaultViewModel["Item"] = item;
 
             DataItem dataItem = (DataItem)item;
-             
+            if (((Entities.DataItem)item).Subtitle == "Photograph") pageTitle.Text = "Indigenous Servicemen Photo: " + item.UniqueId;
+            if (((Entities.DataItem)item).Subtitle == "Photograph") secondTitle.Text = "";
+            if (((Entities.DataItem)item).Subtitle == "Photograph") subTitle.Text = "";
+            //if(item.GetType()=="PHOTOGRAPH")
+
+            secondTitle.Visibility= dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            subTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            content.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            description.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+
+            personDetail.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Visible : Visibility.Collapsed;
+
             ItemVideo.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
             ItemImage.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Collapsed : Visibility.Visible;
 
