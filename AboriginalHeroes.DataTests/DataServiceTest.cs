@@ -57,39 +57,14 @@ namespace AboriginalHeroes.DataTests
                 if (ds.Groups.Count != 0)
                     return;
 
-                Uri dataUri = new Uri("ms-appx:///AboriginalHeroes.Data/DataModels/local/soldiers.json");
-                //Uri dataUri = new Uri("ms-appx:///DataModel/SampleData.json");
+                Uri dataUri = new Uri("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
 
                 StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
                 string jsonText = await FileIO.ReadTextAsync(file);
-                jsonText = jsonText.Replace("\r", "");
-                jsonText = jsonText.Replace("\n", "");
-                jsonText = jsonText.Replace(" ", "");
-                JsonObject jsonObject = JsonObject.Parse(jsonText);
-                JsonArray jsonArray = jsonObject["Groups"].GetArray();
+     
+                Data.DataModels.Awm.RootObject2 resultObj = JsonConvert.DeserializeObject<Data.DataModels.Awm.RootObject2>(jsonText);
 
-                foreach (JsonValue groupValue in jsonArray)
-                {
-                    JsonObject groupObject = groupValue.GetObject();
-                    DataGroup group = new DataGroup(groupObject["UniqueId"].GetString(),
-                                                                groupObject["Title"].GetString(),
-                                                                groupObject["Subtitle"].GetString(),
-                                                                groupObject["ImagePath"].GetString(),
-                                                                groupObject["Description"].GetString());
-
-                    foreach (JsonValue itemValue in groupObject["Items"].GetArray())
-                    {
-                        JsonObject itemObject = itemValue.GetObject();
-                        group.Items.Add(new DataItem(itemObject["UniqueId"].GetString(),
-                                                           itemObject["Title"].GetString(),
-                                                           itemObject["Subtitle"].GetString(),
-                                                           itemObject["ImagePath"].GetString(),
-                                                           itemObject["Description"].GetString(),
-                                                           itemObject["Content"].GetString()));
-                    }
-                    ds.Groups.Add(group);
-                }
-
+                Assert.IsNotNull(resultObj);
 
                 return;
             }

@@ -7,10 +7,12 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 using AboriginalHeroes.Data.DataModels.Awm;
+using AboriginalHeroes.Data.DataModels.Daa;
 using AboriginalHeroes.Entities;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using AboriginalHeroes.Data.DataModels.Naa;
+using Windows.Storage;
 
 namespace AboriginalHeroes.Data
 {
@@ -29,9 +31,21 @@ namespace AboriginalHeroes.Data
             return content;
         }
 
+        private async Task<Data.DataModels.Daa.RootObject> GetLocalFile(string uriPath)
+        {
+            Uri dataUri = new Uri(uriPath);
+
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
+            string jsonText = await FileIO.ReadTextAsync(file);
+
+            Data.DataModels.Daa.RootObject rootObj = JsonConvert.DeserializeObject<Data.DataModels.Daa.RootObject>(jsonText);
+
+            return rootObj;
+        }
+
         public async Task<AboriginalHeroes.Data.DataModels.Awm.RootObject> GetAwmData(string queryString)
         {
-            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20",queryString));
+            string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20", queryString));
 
             AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
             return rootObject;
@@ -54,11 +68,11 @@ namespace AboriginalHeroes.Data
                 string id = result.id;
                 string title = result.title;//"Photograph (" + result.id + ")";                    
                 string subtitle = result.base_rank;
-                string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);
+                string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG", result.accession_number);
                 //string imagePath = @"http://www.cv.vic.gov.au/existingmedia/10583/AboriginalServicemen1.jpg";
                 string description = result.description;
                 StringBuilder content = new StringBuilder();
-                if (result.date_made != null)  content.Append("Date Made: " + result.date_made[0]);
+                if (result.date_made != null) content.Append("Date Made: " + result.date_made[0]);
                 if (result.place_made != null) content.Append("\nPlace: " + result.place_made[0]);
                 if (result.maker != null) content.Append("\nMaker: " + result.maker[0]);
                 if (result.related_conflicts != null) content.Append("\nConflict(s): " + result.related_conflicts[0]);
@@ -74,7 +88,7 @@ namespace AboriginalHeroes.Data
         public async Task<DataGroup> GetDataGroup2()
         {
             AboriginalHeroes.Data.DataModels.Naa.RootObject rootobject = await GetNaaData("indigenous");
-            DataGroup group = new DataGroup("2", "Heroes 2", "World War 1 - Group 2", "", "Here is the group description");
+            DataGroup group = new DataGroup("2", "Enlisted Personnel", "World War 1 - Group 2", "", "Here is the group description");
             foreach (AboriginalHeroes.Data.DataModels.Naa.ResultSet result in rootobject.ResultSet)
             {
                 string id = result.person_id.ToString();
@@ -105,6 +119,27 @@ namespace AboriginalHeroes.Data
 
         }
 
+        public async Task<DataGroup> GetDataGroup4()
+        {
+            AboriginalHeroes.Data.DataModels.Daa.RootObject rootobject = await GetLocalFile("ms-appx:///AboriginalHeroes.Data/DataModels/local/daa.json");
+            DataGroup group = new DataGroup("4", "Indigenous Personnel", "World War 1 - Group 4", "", "Here is the group description");
+
+            AboriginalHeroes.Data.DataModels.Daa.Group dataGroup = rootobject.Groups.First();
+            foreach (DataModels.Daa.Item groupItem in dataGroup.Items)
+            {
+                string id = groupItem.name;
+                string title = groupItem.rank;
+                string subtitle = groupItem.serviceDate;
+                string imagePath = groupItem.photo;
+                string description = groupItem.placeOfBirth;
+                string content = "TODO: add content";
+
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                group.Items.Add(item);
+            }
+
+            return group;
+        }
 
     }
 
