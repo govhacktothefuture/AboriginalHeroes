@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using AboriginalHeroes.Data;
+using AboriginalHeroes.Entities;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
 
@@ -64,7 +66,7 @@ namespace AboriginalHeroes.UI
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = await SampleDataSource.GetItemAsync((String)e.NavigationParameter);
+            var item = await DataSource.GetItemAsync((String)e.NavigationParameter);
             this.DefaultViewModel["Item"] = item;
         }
 
