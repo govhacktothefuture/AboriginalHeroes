@@ -44,15 +44,16 @@ namespace AboriginalHeroes.Data
 
         public async Task<DataGroup> GetDataGroup1()
         {
-            RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");//indigenous            
+            //roll_type:%22Roll%20of%20Honour%22
+            RootObject rootObject = await GetAwmData(@"related_subjects:""Indigenous servicemen"" AND type:""Photograph"" ");         
+            //RootObject rootObject = await GetAwmData(@"roll_type:""Roll of Honour"" AND related_subjects:""Indigenous"" AND type:""Photograph"" ");//indigenous            
             DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
             foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;
                 string title = result.title;                    
                 string subtitle = result.base_rank;
-                string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);
-                //string imagePath = @"http://www.cv.vic.gov.au/existingmedia/10583/AboriginalServicemen1.jpg";
+                string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);               
                 string description = result.description;
                 string content = "TODO: Create some content based on the result;";
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
@@ -80,6 +81,27 @@ namespace AboriginalHeroes.Data
             return group;
 
         }
+
+        public async Task<DataGroup> GetDataGroupVideos()
+        {
+        https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q=related_subjects:%22Aboriginal%22%20AND%20type:%22Film%22%20
+            RootObject rootObject = await GetAwmData(@"related_subjects:""22Aboriginal"" AND type:""22Film"" ");
+            //RootObject rootObject = await GetAwmData(@"roll_type:""Roll of Honour"" AND related_subjects:""Indigenous"" AND type:""Photograph"" ");//indigenous            
+            DataGroup group = new DataGroup("1", "Servicemen", "Their story, our pride", "http://resources2.news.com.au/images/2014/04/18/1226889/222218-35ad41f8-c533-11e3-8bab-a811fb5e7a27.jpg", "Details of indigenous personnel serving in World War conflicts.");
+            foreach (Result result in rootObject.results.Take(100))
+            {
+                string id = result.id;
+                string title = result.title;
+                string subtitle = result.base_rank;
+                string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG", result.accession_number);
+                string description = result.description;
+                string content = "TODO: Create some content based on the result;";
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                group.Items.Add(item);
+            }
+            return group;
+        }
+        //
 
     }
 
