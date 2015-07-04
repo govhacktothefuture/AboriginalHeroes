@@ -49,13 +49,20 @@ namespace AboriginalHeroes.Data
             foreach (Result result in rootObject.results.Take(100))
             {
                 string id = result.id;
-                string title = result.title;                    
+                string title = result.title;//"Photograph (" + result.id + ")";                    
                 string subtitle = result.base_rank;
                 string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);
                 //string imagePath = @"http://www.cv.vic.gov.au/existingmedia/10583/AboriginalServicemen1.jpg";
                 string description = result.description;
-                string content = "TODO: Create some content based on the result;";
-                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
+                StringBuilder content = new StringBuilder();
+                if (result.date_made != null)  content.Append("Date Made: " + result.date_made[0]);
+                if (result.place_made != null) content.Append("\nPlace: " + result.place_made[0]);
+                if (result.maker != null) content.Append("\nMaker: " + result.maker[0]);
+                if (result.related_conflicts != null) content.Append("\nConflict(s): " + result.related_conflicts[0]);
+                if (result.related_people != null) content.Append("\nRelated Peoples(s): " + string.Join(", ", result.related_people));
+                if (result.accession_number != null) content.Append("\nAccess Number: " + result.accession_number);
+
+                DataItem item = new DataItem(id, title, subtitle, imagePath, description, content.ToString());
                 group.Items.Add(item);
             }
             return group;

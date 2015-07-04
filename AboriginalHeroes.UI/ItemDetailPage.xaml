@@ -35,10 +35,12 @@
         -->
 
         <Grid Grid.Row="1" x:Name="contentRegion">
-            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="50,0,0,0">
+            <StackPanel VerticalAlignment="Top" Margin="50,10,0,0">
                 <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>
                 <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                 <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60"/>
+                <TextBlock Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="160"/>
+                <Image Source="{Binding ImagePath, Mode=OneWay}" Width="300" HorizontalAlignment="Left" Margin="10,10"/>
             </StackPanel>
         </Grid>
 
