@@ -54,8 +54,10 @@ namespace AboriginalHeroes.Data
             var dataService = new DataService();
 
             DataGroup group1 = await dataService.GetDataGroup1();
+            DataGroup group2 = await dataService.GetDataGroup2();
 
             this.Groups.Add(group1);
+            this.Groups.Add(group2);
         }
         //private async Task GetDataAsync()
         //{
