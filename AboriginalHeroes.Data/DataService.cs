@@ -8,6 +8,9 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using AboriginalHeroes.Data.DataModels.Awm;
 using AboriginalHeroes.Entities;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using AboriginalHeroes.Data.DataModels.Naa;
 
 namespace AboriginalHeroes.Data
 {
@@ -30,7 +33,7 @@ namespace AboriginalHeroes.Data
         {
             string jsonString = await GetJsonStream(string.Format(@"https://www.awm.gov.au/direct/data.php?key=WW1HACK2015&q={0}&start=40&count=20", queryString));
 
-            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(jsonString);
+            AboriginalHeroes.Data.DataModels.Awm.RootObject rootObject = JsonConvert.DeserializeObject<DataModels.Awm.RootObject>(jsonString);
             return rootObject;
         }
 
@@ -63,23 +66,38 @@ namespace AboriginalHeroes.Data
 
         public async Task<DataGroup> GetDataGroup2()
         {
-            AboriginalHeroes.Data.DataModels.Naa.RootObject rootobject = await GetNaaData("aboriginal");
+            AboriginalHeroes.Data.DataModels.Naa.RootObject rootobject = await GetNaaData("indigenous");
             DataGroup group = new DataGroup("2", "Heroes 2", "World War 1 - Group 2", "", "Here is the group description");
             foreach (AboriginalHeroes.Data.DataModels.Naa.ResultSet result in rootobject.ResultSet)
             {
                 string id = result.person_id.ToString();
                 string title = result.name;
                 string subtitle = result.first_name + " " + result.family_name;
-                string imagePath = "TODO: link to images if possible?";
+                string imagePath = await GetGroup2Images(result.name);
                 string description = "TODO:  ADD Description";
                 string content = "TODO: add content";
+                string barcode = result.barcode;
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
                 group.Items.Add(item);
             }
             return group;
+        }
+
+        public DataGroup GetDataGroup3()
+        {
+            return null;
+        }
+
+        public async Task<string> GetGroup2Images(string name)
+        {
+            string jsonString = await GetJsonStream(string.Format("https://api.naa.gov.au/naa/api/v1/recorditem/search-series-b2455?keyword={0}&rows=1&page=1&app_id=598e8f24&app_key=bf81bc01f4f7c9b74e20be0ce7527395", name));
+            RootObjectBarcode result = JsonConvert.DeserializeObject<RootObjectBarcode>(jsonString);
+         
+            return (string.Format("http://recordsearch.naa.gov.au/SearchNRetrieve/NAAMedia/ShowImage.aspx?B={0}&S=1&T=P", result.ResultSet.First().barcode));
 
         }
+
 
     }
 

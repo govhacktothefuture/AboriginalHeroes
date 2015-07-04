@@ -16,9 +16,24 @@ namespace AboriginalHeroes.Data.DataModels.Naa
         public List<string> service_numbers { get; set; }
         public List<object> place_of_birth { get; set; }
         public List<object> place_of_enlistment { get; set; }
+        public string barcode { get; set; }
     }
 
     public class RootObject
+    {
+        public List<ResultSet> ResultSet { get; set; }
+        public int result_count { get; set; }
+    }
+
+
+    public class ResultSetBarcode
+    {
+        public int record_item_id { get; set; }
+        public string barcode { get; set; }
+        public string title { get; set; }
+    }
+
+    public class RootObjectBarcode
     {
         public List<ResultSet> ResultSet { get; set; }
         public int result_count { get; set; }
