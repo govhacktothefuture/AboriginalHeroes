@@ -71,15 +71,21 @@ namespace AboriginalHeroes.UI
             this.DefaultViewModel["Item"] = item;
 
             DataItem dataItem = (DataItem)item;
-            if (dataItem.Subtitle == "Photograph") pageTitle.Text = "Indigenous Servicemen Photo: " + item.UniqueId;
+            if (dataItem.GroupType == GroupType.Person) pageTitle.Text = "Indigenous Servicemen Photo: " + item.UniqueId;
 
-            secondTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
-            subTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
-            content.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
-            description.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            //secondTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            //subTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            //content.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
+            //description.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
 
-            VideoProperties.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
-            personDetail.Visibility = dataItem.GroupType != GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
+            //VideoProperties.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
+            //  personDetail.Visibility = dataItem.GroupType != GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
+
+            if (string.IsNullOrWhiteSpace(item.Description))
+                description.Visibility = Visibility.Collapsed;
+            if (string.IsNullOrWhiteSpace(item.Content))
+                content.Visibility = Visibility.Collapsed;
+
 
             ItemVideo.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
             ItemImage.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Collapsed : Visibility.Visible;

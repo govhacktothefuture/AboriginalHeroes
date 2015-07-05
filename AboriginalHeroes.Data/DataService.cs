@@ -75,7 +75,7 @@ namespace AboriginalHeroes.Data
             {
                 string id = result.id;
                 string title = result.title;//"Photograph (" + result.id + ")";                    
-                string subtitle = "Photograph"; //result.base_rank;
+                string subtitle = ""; //result.base_rank;
                 string imagePath = string.Format(@"https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/{0}.JPG",result.accession_number);
                 string description = result.description;
                 StringBuilder content = new StringBuilder();
@@ -135,14 +135,7 @@ namespace AboriginalHeroes.Data
                 string title = groupItem.name;
                 string subtitle = groupItem.rank;
                 string imagePath = groupItem.photo;
-                string description = string.Format("Name: {0}\nRank: {1}\nPlace of birth: {2},{3}\nPlace of death:{4},{5}\nService Date: {6}",
-                                        groupItem.name,
-                                        groupItem.rank,
-                                        groupItem.placeOfBirthLat,
-                                        groupItem.placeOfBirthLong,
-                                        groupItem.placeOfDeathLat,
-                                        groupItem.placeOfDeathLong,
-                                        groupItem.serviceDate);
+                string description = string.Format("Service Date: {0}",groupItem.serviceDate);
                 string content = string.Empty;
 
                 DataItem item = new DataItem(id, title, subtitle, imagePath, description, content);
