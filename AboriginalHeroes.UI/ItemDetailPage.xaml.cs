@@ -98,7 +98,9 @@ namespace AboriginalHeroes.UI
 
             var locationRect = new Bing.Maps.LocationRect(locationCollection);
 
-            myMap.SetView(locationRect, TimeSpan.FromSeconds(3));
+            var locationRect2 = new Bing.Maps.LocationRect(locationRect.Center,locationRect.Width + locationRect.Width * 0.7, locationRect.Height + locationRect.Height * 0.20);
+            
+            myMap.SetView(locationRect2, TimeSpan.FromSeconds(3));
             AddMapPushPin(item);
         }
 
