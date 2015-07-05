@@ -39,13 +39,7 @@
         -->
 
         <Grid Grid.Row="1" x:Name="contentRegion">
-            <StackPanel VerticalAlignment="Top" Margin="50,10,0,0">                                 
-                <!--<StackPanel x:Name="VideoProperties" Orientation="Vertical">
-                    <TextBlock x:Name="secondTitle" Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="WrapWholeWords" />
-                    <TextBlock x:Name="subTitle" Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
-                    <TextBlock x:Name="description" Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60"/>
-                    <TextBlock x:Name="content" Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="160"/>
-                </StackPanel>-->
+            <StackPanel VerticalAlignment="Top" Margin="50,10,0,0">                                               
                 <StackPanel Orientation="Horizontal">
                     <Image x:Name="ItemImage" Source="{Binding ImagePath, Mode=OneWay}" MaxHeight ="1000"  MaxWidth="500" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10"/>
                     <StackPanel>
@@ -58,13 +52,7 @@
                         <TextBlock x:Name="description" Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" Width="500"  TextWrapping="WrapWholeWords" HorizontalAlignment="Left"/>
                         <TextBlock x:Name="content" Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="160"/>
                         <maps:Map x:Name="myMap"  Credentials="AjwYOZVhZLjecLWOl9KkM0klJg4d1oUUC7-D1n_e-rz5-KL0eXw2jsL83ndTkG2-" ZoomLevel="12" ShowTraffic="False" Width="600" Height="600" Margin="0,10,0,10"/>
-                    </StackPanel>
-                    <!--<StackPanel x:Name="personDetail" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,50,0">
-                        --><!--<TextBlock Text="Description: " Style="{StaticResource SubheaderTextBlockStyle}"/>
-                        <TextBlock x:Name="description1" Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" MaxHeight="560" MaxWidth="400"/>--><!--
-                        <TextBlock Text="{Binding Content}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="360"/>
-                        
-                    </StackPanel>-->
+                    </StackPanel>                  
                 </StackPanel>
 
                

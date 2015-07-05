@@ -64,28 +64,18 @@ namespace AboriginalHeroes.UI
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
-        {
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
+        {          
             var item = await DataSource.GetItemAsync((String)e.NavigationParameter);
 
             this.DefaultViewModel["Item"] = item;
 
             DataItem dataItem = (DataItem)item;
             if (dataItem.GroupType == GroupType.Person) pageTitle.Text = "Indigenous Servicemen Photo: " + item.UniqueId;
-
-            //secondTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
-            //subTitle.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
-            //content.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
-            //description.Visibility = dataItem.GroupType == GroupType.Person ? Visibility.Collapsed : Visibility.Visible;
-
-            //VideoProperties.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
-            //  personDetail.Visibility = dataItem.GroupType != GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
-
+         
             if (string.IsNullOrWhiteSpace(item.Description))
                 description.Visibility = Visibility.Collapsed;
             if (string.IsNullOrWhiteSpace(item.Content))
                 content.Visibility = Visibility.Collapsed;
-
 
             ItemVideo.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Visible : Visibility.Collapsed;
             ItemImage.Visibility = dataItem.GroupType == GroupType.Video ? Visibility.Collapsed : Visibility.Visible;
